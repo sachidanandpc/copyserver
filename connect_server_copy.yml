@@ -1,17 +1,20 @@
-- hosts: test1app03.proxibid.com
-
- tasks:
-  - name: connect to appserver
-    shell: sshpass -p password ssh -T ansible-user@test1app03.proxibid.com
-	become: yes
+#!/usr/bin/env ansible-playbook
+- name: copy war 
+  hosts: test1server
+  become: yes
+  become_user: ansible-user
+  become_method: sudo
+  tasks:
+      - name: connect to appserver
+        shell: sshpass -p password ssh -T ansible-user@test1app03.proxibid.com
+        become: yes
 	
-  - name: root to user
-    shell: sudo su proxibid
-	become: yes	
+      - name: root to user
+        shell: sudo su proxibid
+        become: yes	
  
-  - copy:
+      - copy:
 	src: /tmp/copysachi
 	dest: /opt/proxibid/jetty/9.3/webapps
 	owner:proxibid
-	mode: 0777 
-	
+	mode: 0777
