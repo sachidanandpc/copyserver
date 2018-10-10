@@ -1,1 +1,1 @@
-testhostapp ansible_ssh_host=test1app03.proxibid.com
+testhostapp ansible_ssh_host=test1app03.proxibid.com ansible_ssh_port=22
